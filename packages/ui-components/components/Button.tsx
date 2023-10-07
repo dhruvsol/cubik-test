@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles.css';
+import 'tailwindcss/tailwind.css';
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary';
@@ -7,9 +7,9 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({ variant = 'primary', children }) => {
-  const baseClasses = "py-2 px-4 rounded border border-gray-300 hover:border-gray-500 text-gray-600 hover:text-black font-mono text-sm transition-all duration-300";
-  const primaryClasses = "bg-blue-500 text-white hover:bg-blue-600 border-blue-500 hover:border-blue-600";
-  const secondaryClasses = "bg-transparent";
+  const baseClasses = "py-2 px-4 rounded-lg transform transition-transform duration-300 hover:scale-105 border hover:border-gray-500 text-white font-mono text-sm transition-all duration-300 bg-opacity-80 hover:bg-opacity-90";
+  const primaryClasses = "bg-transparent hover:bg-gray-900 border-gray-200 hover:border-gray-300";
+  const secondaryClasses = "bg-transparent border-gray-700 hover:border-gray-800 text-gray-400 hover:text-white";
 
   const finalClasses = `
     ${baseClasses} 

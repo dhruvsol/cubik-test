@@ -29,10 +29,6 @@ export default function Page(): JSX.Element {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>
-          my&nbsp;
-          <code className={styles.code}>Repo</code>
-        </p>
         <div className="space-x-4">
           <Button variant="primary">Primary Button</Button>
           <Button variant="secondary">Secondary Button</Button>
