@@ -1,288 +1,184 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  @apply flex flex-col justify-between items-center p-24 min-h-screen;
 }
 
 .vercelLogo {
-  filter: invert(1);
+  @apply filter invert;
 }
 
 .description {
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-  font-size: 0.85rem;
-  max-width: var(--max-width);
-  width: 100%;
-  z-index: 2;
-  font-family: var(--font-mono);
+  @apply flex flex-col justify-between items-center text-xs max-w-full w-full z-10 font-mono;
 }
 
 .description a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
+  @apply flex justify-center items-center gap-2;
 }
 
 .description p {
-  position: relative;
-  margin: 0;
-  padding: 1rem;
+  @apply relative m-0 p-4 bg-opacity-50 border border-opacity-30 rounded-md;
   background-color: rgba(var(--callout-rgb), 0.5);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius);
+  border-color: rgba(var(--callout-border-rgb), 0.3);
 }
 
 .code {
-  font-weight: 700;
-  font-family: var(--font-mono);
+  @apply font-mono font-semibold;
 }
 
 .hero {
-  display: flex;
-  position: relative;
-  place-items: center;
+  @apply flex relative items-center;
 }
 
 .heroContent {
-  display: flex;
-  position: relative;
-  z-index: 0;
-  padding-bottom: 4rem;
-  flex-direction: column;
-  gap: 2rem;
-  justify-content: space-between;
-  align-items: center;
-  width: auto;
-  font-family: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
-  padding-top: 48px;
+  @apply flex relative z-0 pb-16 flex-col gap-8 justify-between items-center w-auto font-sans pt-48;
+}
 
-  @media (min-width: 768px) {
-    padding-top: 4rem;
-    padding-bottom: 6rem;
+@media (min-width: 768px) {
+  .heroContent {
+    @apply pt-16 pb-24;
   }
-  @media (min-width: 1024px) {
-    padding-top: 5rem;
-    padding-bottom: 8rem;
+}
+
+@media (min-width: 1024px) {
+  .heroContent {
+    @apply pt-20 pb-32;
   }
 }
 
 .logos {
-  display: flex;
-  z-index: 50;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  @apply flex z-50 justify-center items-center w-full;
 }
 
 .grid {
-  display: grid;
+  @apply grid gap-4 max-w-full w-screen;
   grid-template-columns: repeat(4, minmax(25%, auto));
-  max-width: 100%;
-  width: var(--max-width);
 }
 
 .card {
-  padding: 1rem 1.2rem;
-  border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
+  @apply p-4 bg-opacity-0 transition-all duration-200 border border-opacity-0 rounded-md;
+  background-color: rgba(var(--card-rgb), 0);
+  border-color: rgba(var(--card-border-rgb), 0);
 }
 
 .card span {
-  display: inline-block;
-  transition: transform 200ms;
+  @apply inline-block transition-transform duration-200;
 }
 
 .card h2 {
-  font-weight: 600;
-  margin-bottom: 0.7rem;
+  @apply font-semibold mb-2;
 }
 
 .card p {
-  margin: 0;
-  opacity: 0.6;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  max-width: 30ch;
+  @apply m-0 opacity-60 text-sm leading-relaxed max-w-xs;
 }
 
 @media (prefers-reduced-motion) {
   .card:hover span {
-    transform: none;
+    @apply transform-none;
   }
 }
 
 /* Mobile */
 @media (max-width: 700px) {
   .content {
-    padding: 4rem;
+    @apply p-16;
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    margin-bottom: 120px;
-    max-width: 320px;
-    text-align: center;
+    @apply grid-cols-1 mb-30 max-w-xs text-center;
   }
 
   .card {
-    padding: 1rem 2.5rem;
+    @apply p-10;
   }
 
   .card h2 {
-    margin-bottom: 0.5rem;
+    @apply mb-2;
   }
 
   .center {
-    padding: 8rem 0 6rem;
-  }
-
-  .center::before {
-    transform: none;
-    height: 300px;
+    @apply p-32;
   }
 
   .description {
-    font-size: 0.8rem;
+    @apply text-sm;
   }
 
   .description a {
-    padding: 1rem;
+    @apply p-4;
   }
 
-  .description p,
-  .description div {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    width: 100%;
-  }
-
-  .description p {
-    align-items: center;
-    inset: 0 0 auto;
-    padding: 2rem 1rem 1.4rem;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--background-start-rgb), 1),
-      rgba(var(--callout-rgb), 0.5)
-    );
-    background-clip: padding-box;
-    backdrop-filter: blur(24px);
-  }
-
-  .description div {
-    align-items: flex-end;
-    pointer-events: none;
-    inset: auto 0 0;
-    padding: 2rem;
-    height: 200px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgb(var(--background-end-rgb)) 40%
-    );
-    z-index: 1;
+  .description p, .description div {
+    @apply flex justify-center fixed w-full;
   }
 }
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
-    background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+    @apply bg-opacity-10 border-opacity-15;
   }
 
   .card:hover span {
-    transform: translateX(4px);
+    @apply transform-translate-x-1;
   }
 }
 
 .circles {
-  position: absolute;
+  @apply absolute;
   min-width: 614px;
   min-height: 614px;
 }
 
 .logo {
-  z-index: 50;
-  width: 120px;
-  height: 120px;
+  @apply z-50 w-30 h-30;
 }
 
 .logoGradientContainer {
-  display: flex;
-  position: absolute;
-  z-index: 50;
-  justify-content: center;
-  align-items: center;
-  width: 16rem;
-  height: 16rem;
+  @apply flex absolute z-50 justify-center items-center w-64 h-64;
 }
 
 .turborepoWordmarkContainer {
-  display: flex;
-  z-index: 50;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  flex-direction: column;
-  gap: 1.25rem;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  @apply flex z-50 px-6 py-6 flex-col gap-5 justify-center items-center text-center;
+}
 
-  @media (min-width: 1024px) {
-    gap: 1.5rem;
+@media (min-width: 1024px) {
+  .turborepoWordmarkContainer {
+    @apply gap-6;
   }
 }
 
 .turborepoWordmark {
-  width: 160px;
-  fill: white;
+  @apply w-40 fill-current text-white;
+}
 
-  @media (min-width: 768px) {
-    width: 200px;
+@media (min-width: 768px) {
+  .turborepoWordmark {
+    @apply w-50;
   }
 }
 
 .code {
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
-    monospace;
-  font-weight: 700;
+  @apply font-mono font-semibold;
 }
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
-    grid-template-columns: repeat(2, 50%);
+    @apply grid-cols-2;
   }
 }
 
 /* Gradients */
 .gradient {
-  position: absolute;
-  mix-blend-mode: normal;
-  will-change: filter;
+  @apply absolute mix-blend-normal;
 }
 
 .gradientSmall {
-  filter: blur(32px);
+  @apply blur-8;
 }
 
 .gradientLarge {
-  filter: blur(75px);
+  @apply blur-20;
 }
 
 .glowConic {
@@ -290,14 +186,9 @@
 }
 
 .logoGradient {
-  opacity: 0.9;
-  width: 120px;
-  height: 120px;
+  @apply opacity-90 w-30 h-30;
 }
 
 .backgroundGradient {
-  top: -500px;
-  width: 1000px;
-  height: 1000px;
-  opacity: 0.15;
+  @apply -top-128 w-screen h-screen opacity-15;
 }

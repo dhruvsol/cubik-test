@@ -1,3 +1,1 @@
-const { postcssConfig } = require('configs');
-
-module.exports = postcssConfig;
+module.exports = require('config/postcss.config');

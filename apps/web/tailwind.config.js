@@ -1,8 +1,1 @@
-const { tailwindConfig } = require('configs');
-
-module.exports = {
-  plugins: {
-    tailwindcss: tailwindConfig,
-    autoprefixer: {},
-  },
-}
+module.exports = require('config/tailwind.config');
