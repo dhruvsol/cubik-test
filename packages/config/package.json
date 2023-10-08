@@ -1,11 +1,15 @@
 {
-  "name": "configs",
+  "name": "config",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "postcss.config.js",
+    "tailwind.config.js"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC"
