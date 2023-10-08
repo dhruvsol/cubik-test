@@ -8,7 +8,9 @@ interface AssetResult {
   [key: string]: unknown;
 }
 
-export async function fetchAssetsByGroup(page = 1): Promise<Asset[]> {
+async function fetchAssetsByGroup(page = 1): Promise<AssetResult> {
+  console.log("Initiating fetch for page:", page); // Log when initiating the fetch
+
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -28,13 +30,35 @@ export async function fetchAssetsByGroup(page = 1): Promise<Asset[]> {
       }),
     });
 
-    const data = await response.json();
-    if (data.result && Array.isArray(data.result.items)) {
-      return data.result.items;
+    if (!response.ok) {
+      console.error("Error response from server:", response.statusText); // Log if there's an HTTP error
+      throw new Error("Failed to fetch from server.");
+    }
+
+    const data = await response.json() as { result?: AssetResult };
+    console.log("Fetched data:", data); // Log the fetched data
+
+    if (data.result) {
+      console.log("Assets fetched successfully");
+      return data.result;
+    } else {
+      console.warn("Result property missing from fetched data");
     }
 
     throw new Error("Failed to fetch assets.");
   } catch (error) {
+    console.error("Error in fetchAssetsByGroup:", error); // Log any caught errors
     throw error;
   }
 }
+
+// Trigger the fetch to see the logs
+fetchAssetsByGroup(1)
+  .then(result => {
+    console.log("Fetched assets:", result);
+  })
+  .catch(error => {
+    console.error("Error fetching assets:", error);
+  });
+
+export default fetchAssetsByGroup;

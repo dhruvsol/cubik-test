@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import AssetList from "./asset-list";
+import AssetList from "./components/asset-list";
 import styles from "./page.module.css";
 import { Button } from "ui-components";
 
