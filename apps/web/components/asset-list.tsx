@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import type { Asset } from '../types';
+import type { Asset } from '../app/types';
 import fetchAssetsByGroup from "./asset-list.server";
 
 export default function AssetList(): JSX.Element {
   const [data, setData] = useState<Asset[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

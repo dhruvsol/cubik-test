@@ -1,4 +1,4 @@
-import type { Asset } from "../types";
+import type { Asset } from "../app/types";
 
 const ITEMS_PER_PAGE = 10;
 const url = "https://mainnet.helius-rpc.com/?api-key=9138758c-cbf0-4175-8382-0dd4b16d7992";
