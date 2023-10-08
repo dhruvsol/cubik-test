@@ -22,9 +22,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.16
         version: 10.4.16(postcss@8.4.31)
-      configs:
+      config:
         specifier: '*'
-        version: 1.0.3
+        version: link:../../packages/config
       next:
         specifier: ^13.4.19
         version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
@@ -66,7 +66,7 @@ importers:
         specifier: ^4.5.3
         version: 4.9.5
 
-  packages/configs: {}
+  packages/config: {}
 
   packages/eslint-config-custom:
     devDependencies:
