@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "ui-components";
+import AssetList from "./asset-list";
 import styles from "./page.module.css";
-import AssetList from "./components/asset-list";
+import { Button } from "ui-components";
 
 function Gradient({
   className,
