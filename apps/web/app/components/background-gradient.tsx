@@ -6,7 +6,7 @@ interface GradientProps {
   small?: boolean;
 }
 
-const BackgroundGradient: React.FC<GradientProps> = ({ className, conic, small }) => {
+function BackgroundGradient({ className, conic, small }: GradientProps): JSX.Element {
   const baseClasses = "absolute mix-blend-normal";
   const conicClass = conic ? "bg-[var(--glow-conic)]" : "";
   const sizeClass = small ? "blur-[32px]" : "blur-[75px]";

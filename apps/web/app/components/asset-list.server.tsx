@@ -9,50 +9,40 @@ interface AssetResult {
 }
 
 async function fetchAssetsByGroup(page = 1): Promise<AssetResult> {
-  console.log("Initiating fetch for page:", page); // Log when initiating the fetch
-
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: "my-id",
+      method: "getAssetsByGroup",
+      params: {
+        groupKey: "collection",
+        groupValue: "J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w",
+        page,
+        limit: ITEMS_PER_PAGE,
       },
-      body: JSON.stringify({
-        jsonrpc: "2.0",
-        id: "my-id",
-        method: "getAssetsByGroup",
-        params: {
-          groupKey: "collection",
-          groupValue: "J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w",
-          page,
-          limit: ITEMS_PER_PAGE,
-        },
-      }),
-    });
+    }),
+  });
 
-    if (!response.ok) {
-      console.error("Error response from server:", response.statusText); // Log if there's an HTTP error
-      throw new Error("Failed to fetch from server.");
-    }
-
-    const data = await response.json() as { result?: AssetResult };
-    console.log("Fetched data:", data); // Log the fetched data
-
-    if (data.result) {
-      console.log("Assets fetched successfully");
-      return data.result;
-    } else {
-      console.warn("Result property missing from fetched data");
-    }
-
-    throw new Error("Failed to fetch assets.");
-  } catch (error) {
-    console.error("Error in fetchAssetsByGroup:", error); // Log any caught errors
-    throw error;
+  if (!response.ok) {
+    throw new Error("Failed to fetch from server.");
   }
+
+  const data = await response.json() as { result?: AssetResult };
+
+  if (data.result) {
+    console.log("Assets fetched successfully");
+    return data.result;
+  }
+
+  console.warn("Result property missing from fetched data");
+  throw new Error("Failed to fetch assets.");
 }
 
-// Trigger the fetch to see the logs
+
 fetchAssetsByGroup(1)
   .then(result => {
     console.log("Fetched assets:", result);

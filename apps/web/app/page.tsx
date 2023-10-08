@@ -1,7 +1,7 @@
 import React from "react";
-import AssetList from "./components/asset-list";
 import { Button } from "ui-components";
-import BackgroundGradient from './components/BackgroundGradient';
+import AssetList from "./components/asset-list";
+import BackgroundGradient from './components/background-gradient';
 
 export default function Page(): JSX.Element {
   return (

@@ -11,21 +11,28 @@ export default function AssetList(): JSX.Element {
 
   useEffect(() => {
     async function fetchData(): Promise<void> {
+        setLoading(true);
+        setError(null);
         try {
             const assets = await fetchAssetsByGroup(currentPage);
-            if (assets && Array.isArray(assets.items)) {
+            if (Array.isArray(assets.items)) {
                 setData(assets.items);
             }
-        } catch (error) {
-            if (error instanceof Error) {
-                setError(error.message);
+        } catch (fetchError) {
+            if (fetchError instanceof Error) {
+              setError(fetchError.message);
             } else {
-                setError('An unexpected error occurred.');
+              setError('An unexpected error occurred.');
             }
+        } finally {
+            setLoading(false);
         }
     }
-    fetchData();
+    fetchData().catch((err) => {
+      console.error('An unexpected error occurred:', err);
+    });
 }, [currentPage]);
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -37,7 +44,7 @@ export default function AssetList(): JSX.Element {
           <li key={asset.id}>{asset.name}</li>
         ))}
       </ul>
-      <div className={`mt-8 flex justify-between items-center`}>
+      <div className="mt-8 flex justify-between items-center">
         <button
           className={`px-4 py-2 rounded ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
           disabled={currentPage === 1}
@@ -48,7 +55,7 @@ export default function AssetList(): JSX.Element {
         >
           Previous
         </button>
-        <span className="text-lg">{`Page ${currentPage}`}</span>
+        <span className="text-lg">Page {currentPage}</span>
         <button
           className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
           onClick={() => {
