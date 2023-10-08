@@ -1,14 +1,16 @@
+import React, { useState } from 'react';
 import { Button } from "ui-components";
 import styles from "./page.module.css";
+import AssetList from './components/asset-list';
 
 function Gradient({
-  conic,
   className,
+  conic,
   small,
 }: {
-  small?: boolean;
-  conic?: boolean;
   className?: string;
+  conic?: boolean;
+  small?: boolean;
 }): JSX.Element {
   return (
     <span
@@ -25,6 +27,8 @@ function Gradient({
 }
 
 export default function Page(): JSX.Element {
+  const [currentPage, setCurrentPage] = useState(1);
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -40,7 +44,17 @@ export default function Page(): JSX.Element {
         </div>
       </div>
 
-      <div className={styles.grid}></div>
+      <div className={styles.grid}>
+        <AssetList page={currentPage} />
+        <div className={styles.pagination}>
+          <button type="button" onClick={() => { setCurrentPage(prev => prev - 1); }} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <button type="button" onClick={() => { setCurrentPage(prev => prev + 1); }}>
+            Next
+          </button>
+        </div>
+      </div>
     </main>
   );
 }
