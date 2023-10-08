@@ -27,6 +27,9 @@ module.exports = {
           backgroundStart: 'var(--background-start-rgb)',
           backgroundEnd: 'var(--background-end-rgb)',
         },
+        backgroundImage: {
+          'gradient-conic': 'conic-gradient(var(--glow-conic))',
+        }
       },
     },
     plugins: [],
