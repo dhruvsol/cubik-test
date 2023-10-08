@@ -6,7 +6,7 @@
       "paths": {
         "ui-components": ["packages/ui-components/index.tsx"],
         "ui-components/*": ["packages/ui-components/*"],
-        "configs/*": ["packages/configs/*"]
+        "config/*": ["packages/config/*"]
       }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
