@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import AssetList from "./components/asset-list";
 import styles from "./page.module.css";
 import { Button } from "ui-components";
@@ -28,8 +27,6 @@ function Gradient({
 }
 
 export default function Page(): JSX.Element {
-  const [currentPage, setCurrentPage] = useState(1);
-
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -46,26 +43,7 @@ export default function Page(): JSX.Element {
       </div>
 
       <div className={styles.grid}>
-        <AssetList page={currentPage} />
-        <div className={styles.pagination}>
-          <button
-            disabled={currentPage === 1}
-            onClick={() => {
-              setCurrentPage((prev) => prev - 1);
-            }}
-            type="button"
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => {
-              setCurrentPage((prev) => prev + 1);
-            }}
-            type="button"
-          >
-            Next
-          </button>
-        </div>
+        <AssetList />
       </div>
     </main>
   );
