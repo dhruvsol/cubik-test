@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 import { Button } from "ui-components";
 import styles from "./page.module.css";
-import AssetList from './components/asset-list';
+import AssetList from "./components/asset-list";
 
 function Gradient({
   className,
@@ -40,17 +41,28 @@ export default function Page(): JSX.Element {
 
       <div className={styles.hero}>
         <div className={styles.heroContent}>
-          <Gradient className={styles.backgroundGradient} conic />
+        <Gradient className={styles.backgroundGradient} conic />
         </div>
       </div>
 
       <div className={styles.grid}>
         <AssetList page={currentPage} />
         <div className={styles.pagination}>
-          <button type="button" onClick={() => { setCurrentPage(prev => prev - 1); }} disabled={currentPage === 1}>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => {
+              setCurrentPage((prev) => prev - 1);
+            }}
+            type="button"
+          >
             Previous
           </button>
-          <button type="button" onClick={() => { setCurrentPage(prev => prev + 1); }}>
+          <button
+            onClick={() => {
+              setCurrentPage((prev) => prev + 1);
+            }}
+            type="button"
+          >
             Next
           </button>
         </div>

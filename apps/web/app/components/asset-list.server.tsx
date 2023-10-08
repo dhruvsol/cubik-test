@@ -1,8 +1,11 @@
+import type { Asset } from "../types";
+
 const ITEMS_PER_PAGE = 10;
-const url = "https://mainnet.helius-rpc.com/?api-key=9138758c-cbf0-4175-8382-0dd4b16d7992";
+const url =
+  "https://mainnet.helius-rpc.com/?api-key=9138758c-cbf0-4175-8382-0dd4b16d7992";
 
 interface AssetResult {
-  items?: unknown[];
+  items?: Asset[];
   [key: string]: unknown;
 }
 
@@ -25,7 +28,7 @@ async function fetchAssetsByGroup(page = 1): Promise<AssetResult> {
     }),
   });
 
-  const data: { result?: AssetResult } = await response.json();
+  const data = await response.json() as { result?: AssetResult };
   if (data.result) {
     return data.result;
   }

@@ -1,10 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import type { Asset } from '../types';
 import fetchAssetsByGroup from "./asset-list.server";
-
-interface Asset {
-  id: string;
-  name: string;
-}
 
 interface AssetListProps {
   page: number;
@@ -18,10 +14,10 @@ export default function AssetList({ page }: AssetListProps): JSX.Element {
       try {
         const assets = await fetchAssetsByGroup(page);
         if (Array.isArray(assets.items)) {
-          setData(assets.items as Asset[]);
+          setData(assets.items);
         }
-      } catch (error) {
-        console.error("Error fetching assets:", error);
+      } catch (error) {  
+        // console.error("Error fetching assets:", error);
       }
     }
 
