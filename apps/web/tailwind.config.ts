@@ -1,36 +1,46 @@
 module.exports = {
-    content: [
-      "../../packages/ui-components/**/*.{js,ts,jsx,tsx}",
-      "./app/**/*.{js,ts,jsx,tsx,css}",
-      "./app/components/**/*.{js,ts,jsx,tsx}",
-    ],
-    theme: {
-      extend: {
-        spacing: {
-          '6rem': '6rem',
+  content: [
+    "../../packages/ui-components/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx,css}",
+    "./app/components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      spacing: {
+        '6rem': '6rem',
+      },
+      borderRadius: {
+        custom: '12px',
+      },
+      maxWidth: {
+        custom: '1100px',
+      },
+      fontFamily: {
+        mono: [
+          'ui-monospace', 'Menlo', 'Monaco', 'Cascadia Mono', 'Segoe UI Mono',
+          'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+          'Fira Mono', 'Droid Sans Mono', 'Courier New', 'monospace'
+        ]
+      },
+      colors: {
+        foreground: 'rgb(255, 255, 255)',
+        background: {
+          start: 'rgb(0, 0, 0)',
+          end: 'rgb(0, 0, 0)'
         },
-        borderRadius: {
-          custom: 'var(--border-radius)',
+        callout: {
+          DEFAULT: 'rgb(20, 20, 20)',
+          border: 'rgb(108, 108, 108)'
         },
-        maxWidth: {
-          custom: 'var(--max-width)',
-        },
-        colors: {
-          callout: {
-            DEFAULT: 'var(--callout-rgb)',
-            border: 'var(--callout-border-rgb)',
-          },
-          card: {
-            DEFAULT: 'var(--card-rgb)',
-            border: 'var(--card-border-rgb)',
-          },
-          backgroundStart: 'var(--background-start-rgb)',
-          backgroundEnd: 'var(--background-end-rgb)',
-        },
-        backgroundImage: {
-          'gradient-conic': 'conic-gradient(var(--glow-conic))',
+        card: {
+          DEFAULT: 'rgb(100, 100, 100)',
+          border: 'rgb(200, 200, 200)'
         }
       },
+      backgroundImage: {
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)',
+      }
     },
-    plugins: [],
-  };
+  },
+  plugins: [],
+};
