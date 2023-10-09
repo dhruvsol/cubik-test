@@ -1,4 +1,9 @@
 export interface Asset {
-    id: string;
-    name: string;
-  }
+  id: string;
+  ownership?: {
+      owner: string;
+  };
+  compression?: {
+      compressed: boolean;
+  };
+};

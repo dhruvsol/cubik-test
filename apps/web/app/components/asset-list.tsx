@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import type { Asset } from "../types";
 import fetchAssetsByGroup from "./asset-list.server";
 import { Button } from "ui-components";
+import type { Asset } from "../types";
 
 export default function AssetList(): JSX.Element {
   const [data, setData] = useState<Asset[]>([]);
@@ -34,12 +34,12 @@ export default function AssetList(): JSX.Element {
     });
   }, [currentPage]);
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     console.log("Next button clicked.");
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = (): void => {
     console.log("Previous button clicked.");
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
@@ -77,7 +77,7 @@ export default function AssetList(): JSX.Element {
         </table>
       </div>
       <div className="mt-5 space-x-4">
-        <Button variant="primary" onClick={handlePrevious} className="mr-2">
+      <Button className="mr-2" onClick={handlePrevious} variant="primary">
           Previous
         </Button>
         <Button variant="secondary" onClick={handleNext}>
