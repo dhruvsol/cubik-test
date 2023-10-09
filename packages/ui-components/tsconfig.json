@@ -1,0 +1,15 @@
+{
+    "extends": "tsconfig/nextjs.json",
+    "compilerOptions": {
+      "plugins": [{ "name": "next" }],
+      "baseUrl": ".",
+      "paths": {
+        "ui-components": ["packages/ui-components/index.tsx"],
+        "ui-components/*": ["packages/ui-components/*"],
+        "config/*": ["packages/config/*"]
+      }
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "exclude": ["node_modules"]
+  }
+  
