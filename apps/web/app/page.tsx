@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Button } from "ui";
 
 function Gradient({
   conic,
@@ -11,7 +12,7 @@ function Gradient({
 }): JSX.Element {
   return (
     <span
-      className={`absolute mix-blend-normal will-change-[filter] rounded-[100%] ${
+      className={`absolute rounded-[100%] mix-blend-normal will-change-[filter] ${
         small ? "blur-[32px]" : "blur-[75px]"
       } ${conic ? "bg-glow-conic" : ""} ${className}`}
     />
@@ -42,11 +43,15 @@ const LINKS = [
   },
 ];
 
+function handleClick() {
+  console.log("HELLO");
+}
+
 export default function Page(): JSX.Element {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed px-4 left-0 top-0 flex w-full justify-center border-b bg-gradient-to-b pb-6 pt-8 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
+      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-neutral-800 bg-zinc-800/30 bg-gradient-to-b from-inherit px-4 pb-6 pt-8 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:bg-zinc-800/30 lg:p-4">
           examples/with-tailwind -&nbsp;
           <code className="font-mono font-bold">web</code>
         </p>
@@ -71,9 +76,9 @@ export default function Page(): JSX.Element {
       </div>
 
       <div className="relative flex place-items-center ">
-        <div className="font-sans w-auto pb-16 pt-[48px] md:pb-24 lg:pb-32 md:pt-16 lg:pt-20 flex justify-between gap-8 items-center flex-col relative z-0">
-          <div className="z-50 flex items-center justify-center w-full">
-            <div className="absolute min-w-[614px] min-h-[614px]">
+        <div className="relative z-0 flex w-auto flex-col items-center justify-between gap-8 pb-16 pt-[48px] font-sans md:pb-24 md:pt-16 lg:pb-32 lg:pt-20">
+          <div className="z-50 flex w-full items-center justify-center">
+            <div className="absolute min-h-[614px] min-w-[614px]">
               <Image
                 alt="Turborepo"
                 height={614}
@@ -81,15 +86,15 @@ export default function Page(): JSX.Element {
                 width={614}
               />
             </div>
-            <div className="absolute z-50 flex items-center justify-center w-64 h-64">
+            <div className="absolute z-50 flex h-64 w-64 items-center justify-center">
               <Gradient
-                className="opacity-90 w-[120px] h-[120px]"
+                className="h-[120px] w-[120px] opacity-90"
                 conic
                 small
               />
             </div>
 
-            <div className="w-[120px] h-[120px] z-50">
+            <div className="z-50 h-[120px] w-[120px]">
               <Image
                 alt=""
                 height={120}
@@ -100,12 +105,12 @@ export default function Page(): JSX.Element {
             </div>
           </div>
           <Gradient
-            className="top-[-500px] opacity-[0.15] w-[1000px] h-[1000px]"
+            className="top-[-500px] h-[1000px] w-[1000px] opacity-[0.15]"
             conic
           />
           <div className="z-50 flex flex-col items-center justify-center gap-5 px-6 text-center lg:gap-6">
             <svg
-              className="w-[160px] md:w-[200px] fill-white"
+              className="w-[160px] fill-white md:w-[200px]"
               viewBox="0 0 506 50"
               width={200}
               xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +130,29 @@ export default function Page(): JSX.Element {
         </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left"></div>
+      <div className="z-50 mb-32 flex w-full max-w-md flex-col gap-3 md:flex-row">
+        <div className="group relative w-full">
+          <Button variant="primary">
+            <a
+              href="https://turbo.build/repo/docs"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Get Started
+            </a>
+          </Button>
+          <div className="absolute top-0 -z-10 h-full w-full rounded-full bg-red-100 opacity-0 blur-lg transition-all duration-300 group-hover:opacity-70" />
+        </div>
+        <Button variant="secondary">
+          <a
+            href="https://github.com/vercel/turbo"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            GitHub
+          </a>
+        </Button>
+      </div>
     </main>
   );
 }
