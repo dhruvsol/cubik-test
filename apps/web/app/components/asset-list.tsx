@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import type { Asset } from '../types';
+import type { Asset } from "../types";
 import fetchAssetsByGroup from "./asset-list.server";
+import { Button } from "ui-components";
 
 export default function AssetList(): JSX.Element {
   const [data, setData] = useState<Asset[]>([]);
@@ -10,61 +11,78 @@ export default function AssetList(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchData(): Promise<void> {
-        setLoading(true);
-        setError(null);
-        try {
-            const assets = await fetchAssetsByGroup(currentPage);
-            if (Array.isArray(assets.items)) {
-                setData(assets.items);
-            }
-        } catch (fetchError) {
-            if (fetchError instanceof Error) {
-              setError(fetchError.message);
-            } else {
-              setError('An unexpected error occurred.');
-            }
-        } finally {
-            setLoading(false);
+    (async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const assets = await fetchAssetsByGroup(currentPage);
+        // console.log("Fetched assets for page:", currentPage, assets);
+        if (Array.isArray(assets.items)) {
+          setData(assets.items);
         }
-    }
-    fetchData().catch((err) => {
-      console.error('An unexpected error occurred:', err);
+      } catch (fetchError) {
+        if (fetchError instanceof Error) {
+          setError(fetchError.message);
+        } else {
+          setError("An unexpected error occurred.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    })().catch((err) => {
+      console.error("An unexpected error occurred:", err);
     });
-}, [currentPage]);
+  }, [currentPage]);
 
+  const handleNext = () => {
+    console.log("Next button clicked.");
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  const handlePrevious = () => {
+    console.log("Previous button clicked.");
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  if (loading) return <div className="text-center my-5">Loading...</div>;
+  if (error)
+    return <div className="text-center my-5 text-red-500">Error: {error}</div>;
 
   return (
-    <div>
-      <ul>
-        {data.map((asset) => (
-          <li key={asset.id}>{asset.name}</li>
-        ))}
-      </ul>
-      <div className="mt-8 flex justify-between items-center">
-        <button
-          className={`px-4 py-2 rounded ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
-          disabled={currentPage === 1}
-          onClick={() => {
-            setCurrentPage((prev) => prev - 1);
-          }}
-          type="button"
-        >
+    <div className="flex flex-col items-center justify-center h-screen bg-transparent text-white">
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-transparent text-black rounded-lg shadow-md">
+          <thead>
+            <tr className="bg-transparent text-gray-500">
+              <th className="px-4 py-2 border border-gray-400">ID</th>
+              <th className="px-4 py-2 border border-gray-400">Owner</th>
+              <th className="px-4 py-2 border border-gray-400">Compressed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((asset) => (
+              <tr key={asset.id} className="bg-transparent text-gray-200">
+                <td className="px-4 py-2 border border-gray-400">{asset.id}</td>
+                <td className="px-4 py-2 border border-gray-400">
+                  {asset.ownership?.owner}
+                </td>
+                <td className="px-4 py-2 border border-gray-400">
+                  {asset.compression?.compressed.toString()}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="mt-5 space-x-4">
+        <Button variant="primary" onClick={handlePrevious} className="mr-2">
           Previous
-        </button>
-        <span className="text-lg">Page {currentPage}</span>
-        <button
-          className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
-          onClick={() => {
-            setCurrentPage((prev) => prev + 1);
-          }}
-          type="button"
-        >
+        </Button>
+        <Button variant="secondary" onClick={handleNext}>
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -43,12 +43,12 @@ async function fetchAssetsByGroup(page = 1): Promise<AssetResult> {
 }
 
 
-fetchAssetsByGroup(1)
-  .then(result => {
-    console.log("Fetched assets:", result);
-  })
-  .catch(error => {
-    console.error("Error fetching assets:", error);
-  });
+// fetchAssetsByGroup(1)
+//   .then(result => {
+//     console.log("Fetched assets:", result);
+//   })
+//   .catch(error => {
+//     console.error("Error fetching assets:", error);
+//   });
 
 export default fetchAssetsByGroup;
