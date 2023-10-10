@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import { Button } from "ui";
 
 function Gradient({
   conic,
@@ -12,14 +12,9 @@ function Gradient({
 }): JSX.Element {
   return (
     <span
-      className={[
-        styles.gradient,
-        conic ? styles.glowConic : undefined,
-        small ? styles.gradientSmall : styles.gradientLarge,
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={`absolute rounded-[100%] mix-blend-normal will-change-[filter] ${
+        small ? "blur-[32px]" : "blur-[75px]"
+      } ${conic ? "bg-glow-conic" : ""} ${className}`}
     />
   );
 }
@@ -48,16 +43,21 @@ const LINKS = [
   },
 ];
 
+function handleClick() {
+  console.log("HELLO");
+}
+
 export default function Page(): JSX.Element {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          examples/basic&nbsp;
-          <code className={styles.code}>web</code>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-neutral-800 bg-zinc-800/30 bg-gradient-to-b from-inherit px-4 pb-6 pt-8 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:bg-zinc-800/30 lg:p-4">
+          examples/with-tailwind -&nbsp;
+          <code className="font-mono font-bold">web</code>
         </p>
-        <div>
+        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-black via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
+            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href="https://vercel.com?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"
             rel="noopener noreferrer"
             target="_blank"
@@ -65,7 +65,7 @@ export default function Page(): JSX.Element {
             By{" "}
             <Image
               alt="Vercel Logo"
-              className={styles.vercelLogo}
+              className="invert"
               height={24}
               priority
               src="/vercel.svg"
@@ -75,10 +75,10 @@ export default function Page(): JSX.Element {
         </div>
       </div>
 
-      <div className={styles.hero}>
-        <div className={styles.heroContent}>
-          <div className={styles.logos}>
-            <div className={styles.circles}>
+      <div className="relative flex place-items-center ">
+        <div className="relative z-0 flex w-auto flex-col items-center justify-between gap-8 pb-16 pt-[48px] font-sans md:pb-24 md:pt-16 lg:pb-32 lg:pt-20">
+          <div className="z-50 flex w-full items-center justify-center">
+            <div className="absolute min-h-[614px] min-w-[614px]">
               <Image
                 alt="Turborepo"
                 height={614}
@@ -86,11 +86,15 @@ export default function Page(): JSX.Element {
                 width={614}
               />
             </div>
-            <div className={styles.logoGradientContainer}>
-              <Gradient className={styles.logoGradient} conic small />
+            <div className="absolute z-50 flex h-64 w-64 items-center justify-center">
+              <Gradient
+                className="h-[120px] w-[120px] opacity-90"
+                conic
+                small
+              />
             </div>
 
-            <div className={styles.logo}>
+            <div className="z-50 h-[120px] w-[120px]">
               <Image
                 alt=""
                 height={120}
@@ -100,10 +104,13 @@ export default function Page(): JSX.Element {
               />
             </div>
           </div>
-          <Gradient className={styles.backgroundGradient} conic />
-          <div className={styles.turborepoWordmarkContainer}>
+          <Gradient
+            className="top-[-500px] h-[1000px] w-[1000px] opacity-[0.15]"
+            conic
+          />
+          <div className="z-50 flex flex-col items-center justify-center gap-5 px-6 text-center lg:gap-6">
             <svg
-              className={styles.turborepoWordmark}
+              className="w-[160px] fill-white md:w-[200px]"
               viewBox="0 0 506 50"
               width={200}
               xmlns="http://www.w3.org/2000/svg"
@@ -123,8 +130,28 @@ export default function Page(): JSX.Element {
         </div>
       </div>
 
-      <div className={styles.grid}>
-      
+      <div className="z-50 mb-32 flex w-full max-w-md flex-col gap-3 md:flex-row">
+        <div className="group relative w-full">
+          <Button variant="primary">
+            <a
+              href="https://turbo.build/repo/docs"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Get Started
+            </a>
+          </Button>
+          <div className="absolute top-0 -z-10 h-full w-full rounded-full bg-red-100 opacity-0 blur-lg transition-all duration-300 group-hover:opacity-70" />
+        </div>
+        <Button variant="secondary">
+          <a
+            href="https://github.com/vercel/turbo"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            GitHub
+          </a>
+        </Button>
       </div>
     </main>
   );

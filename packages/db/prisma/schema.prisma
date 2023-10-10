@@ -22,5 +22,4 @@ model User {
   updatedAt      DateTime        @updatedAt
   isActive       Boolean         @default(true)
   isArchive      Boolean         @default(false)
-
 }
