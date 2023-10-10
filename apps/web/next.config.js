@@ -3,6 +3,14 @@ module.exports = {
   reactStrictMode: true,
   transpilePackages: ["ui"],
   experimental: {
-    serverActions: true, // add this
+    serverActions: true
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.amazonaws.com',
+      },
+    ],
   },
 };

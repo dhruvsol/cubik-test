@@ -1,4 +1,5 @@
 import {Button} from "@ui/components/button";
+import Link from "next/link";
 
 export default function Page(): JSX.Element {
     return (
@@ -6,7 +7,7 @@ export default function Page(): JSX.Element {
             <h1 className="text-3xl p-4">Hello, this assignment was Submitted by Sayan Biswas</h1>
             <div className="flex justify-center items-center gap-2">
                 <Button variant="outline">Outline Button</Button>
-                <Button><a href="/assets/1">Go to <code>&nbsp;/assets</code></a></Button>
+                <Button><Link href="/assets/1">Go to <code>&nbsp;/assets</code></Link></Button>
             </div>
             <div className="flex mt-4">
                 <svg className="h-10 w-10" viewBox="0 0 101 120" fill="none" xmlns="http://www.w3.org/2000/svg">
