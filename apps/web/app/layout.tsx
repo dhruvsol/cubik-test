@@ -16,7 +16,9 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="width-full flex items-center justify-center">
+        {children}
+      </body>
     </html>
   );
 }
