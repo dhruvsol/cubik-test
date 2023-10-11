@@ -4,8 +4,7 @@ import { Button } from "ui";
 import { Result } from "./utils/types";
 import Image from "next/image";
 
-const url =
-  "https://mainnet.helius-rpc.com/?api-key=7577dff3-a00f-4d74-a7d2-83661e19fe7c";
+const url = `https://mainnet.helius-rpc.com/?api-key=${process.env.HELIUS_API_KEY}`;
 
 export const getAssetsByGroup = async ({ page, limit }): Promise<Result> => {
   const response = await fetch(url, {
@@ -26,7 +25,7 @@ export const getAssetsByGroup = async ({ page, limit }): Promise<Result> => {
     }),
   });
   const { result } = await response.json();
-  console.log("royalty", result.items[9].ownership);
+  // console.log("royalty", result.items[9].ownership);
   return result;
 };
 
