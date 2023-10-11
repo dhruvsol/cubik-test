@@ -1,4 +1,4 @@
-import React, { Children, ComponentProps } from "react";
+import React, { ComponentProps } from "react";
 import clsx from "clsx";
 
 type buttonProps = ComponentProps<"button">;
@@ -12,8 +12,8 @@ export function Button({ variant = "primary", children, ...props }: Props) {
     <button
       {...props}
       className={clsx("px-4 py-2 rounded-md text-white", {
-        "bg-[#2196f3] ": variant === "primary",
-        "bg-[#607d8b]": variant === "secondary",
+        "bg-[#3b71ca]": variant === "primary",
+        "border border-[#3b71ca] text-[#3b71ca]": variant === "secondary",
       })}
     >
       {children}
