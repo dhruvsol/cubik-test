@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { Button } from "ui";
 
 function Gradient({
   conic,
@@ -52,7 +53,7 @@ export default function Page(): JSX.Element {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>
+        <p className="text-red-400">
           examples/basic&nbsp;
           <code className={styles.code}>web</code>
         </p>
@@ -123,9 +124,7 @@ export default function Page(): JSX.Element {
         </div>
       </div>
 
-      <div className={styles.grid}>
-      
-      </div>
+      <div className={styles.grid}></div>
     </main>
   );
 }
