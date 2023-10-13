@@ -1,6 +1,6 @@
 import Link from "next/link";
 import clsx from "clsx";
-import { Button } from "ui";
+import { Button, Icon } from "ui";
 import { Result } from "./utils/types";
 import Image from "next/image";
 
@@ -73,6 +73,7 @@ export default async function Page({
             Next
           </Link>
         </Button>
+        <Icon name="discord" />
       </div>
       <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 place-items-center mt-8">
         {response.items.map((item: any) => (
